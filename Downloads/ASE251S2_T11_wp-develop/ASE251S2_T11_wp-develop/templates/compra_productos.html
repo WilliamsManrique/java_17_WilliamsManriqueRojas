@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos - Agrícola Green Crop</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/3.jpg') }}">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/output.css') }}" rel="stylesheet">
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="header-container">
+            <a href="{{ url_for('index') }}" class="header-logo-link">
+                <img src="{{ url_for('static', filename='img/3.jpg') }}" alt="Logo Agrícola Green Crop" class="logo-img">
+                <div class="logo-text-container">
+                    <h1 class="logo-title">
+                        <span class="logo-text-agricola">Agrícola</span>
+                        <span class="logo-text-green">Green</span>
+                    </h1>
+                    <p class="logo-text-crop">Crop</p>
+                </div>
+            </a>
+            <nav class="main-nav hidden-mobile">
+                <a href="{{ url_for('index') }}" class="nav-link">Inicio</a>
+
+                <!-- Menú desplegable de Productos -->
+                <div class="dropdown">
+                    <a href="{{ url_for('productos') }}" class="nav-link dropdown-toggle">
+                        Productos <span class="dropdown-arrow">▼</span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="#" class="dropdown-link" onclick="showCategory('nitrogenados')">Fertilizantes Nitrogenados</a>
+                        <a href="#" class="dropdown-link" onclick="showCategory('fosfatados')">Fertilizantes Fosfatados</a>
+                        <a href="#" class="dropdown-link" onclick="showCategory('potasicos')">Fertilizantes Potásicos</a>
+                        <a href="#" class="dropdown-link" onclick="showCategory('magnesicos')">Fertilizantes Magnésicos</a>
+                        <a href="#" class="dropdown-link" onclick="showCategory('micronutrientes')">Micronutrientes</a>
+                        <a href="#" class="dropdown-link" onclick="showCategory('compuestos')">Fertilizantes Compuestos</a>
+                        <a href="#" class="dropdown-link" onclick="showCategory('hidrosolubles')">Fertilizantes Hidrosolubles</a>
+                        <a href="#" class="dropdown-link" onclick="showCategory('foliares')">Fertilizantes Foliares</a>
+                    </div>
+                </div>
+
+                <a href="{{ url_for('servicio') }}" class="nav-link">Servicios</a>
+                <a href="{{ url_for('blog') }}" class="nav-link">Blog</a>
+                <a href="{{ url_for('nosotros') }}" class="nav-link">Nosotros</a>
+                <a href="{{ url_for('contact') }}" class="nav-link">Contacto</a>
+                <div class="cart-icon" id="header-cart-icon">
+                    🛒 <span class="cart-count">0</span>
+                </div>
+            </nav>
+            <button id="mobile-menu-button" class="mobile-menu-button">
+                <svg class="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Buscar producto...">
+    <ul id="suggestionsList" class="suggestions-list">
+        </ul>
+    </div>
+
+    <div class="products-container">
+        <aside class="categories-sidebar">
+            <h2>CATEGORÍAS</h2>
+            <ul class="categories-list">
+                <li><a href="#" onclick="showCategory('inicio')">Inicio y Prefloración</a></li>
+                <li><a href="#" onclick="showCategory('fosfatados')">Fertilizantes Fosfatados</a></li>
+                <li><a href="#" onclick="showCategory('vegetativo')">Desarrollo Vegetativo</a></li>
+                <li><a href="#" onclick="showCategory('potasicos')">Fertilizantes Potásicos</a></li>
+                <li><a href="#" onclick="showCategory('multiproposito')">Multipropósito</a></li>
+                <li><a href="#" onclick="showCategory('magnesicos')" class="active">Fertilizantes Magnésicos</a></li>
+                <li><a href="#" onclick="showCategory('fruto')">Desarrollo y Llenado de Fruto</a></li>
+                <li><a href="#" onclick="showCategory('micronutrientes')">Micronutrientes</a></li>
+                <li><a href="#" onclick="showCategory('compuestos')">Fertilizantes Compuestos</a></li>
+                <li><a href="#" onclick="showCategory('molinax')">Mezclas Molinax</a></li>
+                <li><a href="#" onclick="showCategory('especificas')">Mezclas Específicas</a></li>
+                <li><a href="#" onclick="showCategory('quimicas')">Mezclas Químicas y Formulaciones</a></li>
+                <li><a href="#" onclick="showCategory('hidrosolubles')">Fertilizantes Hidrosolubles</a></li>
+                <li><a href="#" onclick="showCategory('foliares')">Fertilizantes Foliares</a></li>
+                <li><a href="#" onclick="showCategory('nitrogenados')">Fertilizantes Nitrogenados</a></li>
+            </ul>
+        </aside>
+
+        <main class="products-main">
+            <h1 class="category-title" id="current-category-title">FERTILIZANTES FOSFATADOS</h1>
+            <div class="products-grid" id="products-grid">
+                <!-- Los productos se cargarán dinámicamente según la categoría -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Sistema de Carrito -->
+    <div class="overlay" id="overlay"></div>
+    <div class="cart-system" id="cart-system">
+        <div class="cart-header">
+            <h2>Tu Carrito</h2>
+            <button class="close-cart" id="close-cart">×</button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Los elementos del carrito se añadirán aquí dinámicamente -->
+        </div>
+        <div class="cart-total">
+            Total: $<span id="cart-total">0.00</span>
+        </div>
+        <button class="checkout-btn" id="checkout-btn">Proceder al Pago</button>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container footer-container">
+            <div class="footer-contact">
+                <h3 class="footer-title">Contáctanos</h3>
+                <p class="footer-text"><i class="fas fa-phone footer-icon"></i> +51 941 562 220</p>
+                <p class="footer-text"><i class="fas fa-map-marker-alt footer-icon"></i> jr. sucre 426 imperial, cañete, Perú</p>
+                <p class="footer-text"><i class="fas fa-envelope footer-icon"></i> agricolagreencrop23@gmail.com</p>
+            </div>
+            <div class="footer-social">
+                <h3 class="footer-title">Síguenos</h3>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/" target="_blank" class="social-link"><i class="fab fa-facebook-f icon-2x"></i></a>
+                    <a href="https://www.instagram.com/" target="_blank" class="social-link"><i class="fab fa-instagram icon-2x"></i></a>
+                    <a href="https://www.youtube.com/" target="_blank" class="social-link"><i class="fab fa-youtube icon-2x"></i></a>
+                    <a href="https://wa.me/51941562220" target="_blank" class="social-link"><i class="fab fa-whatsapp icon-2x"></i></a>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <p>© 2025 Agricola Green Crop S.A.C.</p>
+                <p>Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/web.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/compra.js') }}"></script>
+</body>
+</html>

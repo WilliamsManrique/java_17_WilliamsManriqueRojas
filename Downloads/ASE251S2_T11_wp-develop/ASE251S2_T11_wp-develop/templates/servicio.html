@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios - Agrícola Green Crop</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/3.jpg') }}">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/output.css') }}" rel="stylesheet">
+</head>
+<body class="main-body">
+
+    <header class="main-header">
+        <div class="header-container">
+            <a href="{{ url_for('index') }}" class="header-logo-link">
+                <img src="{{ url_for('static', filename='img/3.jpg') }}" alt="Logo Agrícola Green Crop" class="logo-img">
+                <div class="logo-text-container">
+                    <h1 class="logo-title">
+                        <span class="logo-text-agricola">Agrícola</span>
+                        <span class="logo-text-green">Green</span>
+                    </h1>
+                    <p class="logo-text-crop">Crop</p>
+                </div>
+            </a>
+            <nav class="main-nav hidden-mobile">
+                <a href="{{ url_for('index') }}" class="nav-link">Inicio</a>
+
+                
+            <!-- Menú desplegable de Productos -->
+            <div class="dropdown">
+                <a href="{{ url_for('productos') }}" class="nav-link dropdown-toggle">
+                    Productos <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="dropdown-menu">
+                    <a href="{{ url_for('productos') }}#fertilizantes" class="dropdown-link">Fertilizantes</a>
+                    <a href="{{ url_for('productos') }}#pesticidas" class="dropdown-link">Pesticidas</a>
+                    <a href="{{ url_for('productos') }}#semillas" class="dropdown-link">Semillas</a>
+                    <a href="{{ url_for('productos') }}#herramientas" class="dropdown-link">Herramientas</a>
+                </div>
+            </div>
+
+
+                <a href="{{ url_for('servicio') }}" class="nav-link">Servicios</a>
+                <a href="{{ url_for('blog') }}" class="nav-link">Blog</a>
+                <a href="{{ url_for('nosotros') }}" class="nav-link">Nosotros</a>
+                <a href="{{ url_for('contact') }}" class="nav-link">Contacto</a>
+                <a href="{{ url_for('formulario_compra') }}" class="nav-link">Compra</a>
+            </nav>
+            <button id="mobile-menu-button" class="mobile-menu-button">
+                <svg class="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section class="page-title-section">
+            <h1 class="page-title">Nuestros Servicios</h1>
+            <p class="page-subtitle">Ofrecemos una variedad de servicios para optimizar y asegurar el éxito de tu cosecha.</p>
+        </section>
+
+        <section class="services-grid-section">
+            <div class="container services-grid">
+                <div class="service-card">
+                    <img src="{{ url_for('static', filename='img/10.jpg') }}" alt="Servicio 1" class="service-image">
+                    <div class="service-info">
+                        <h2 class="service-title">Asesoría Agrícola</h2>
+                        <p class="service-description">Expertos en agronomía te guían para tomar las mejores decisiones para tus cultivos.</p>
+                        <a href="{{ url_for('contact') }}" class="btn-primary">Solicitar Asesoría</a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <img src="{{ url_for('static', filename='img/suelo.gif') }}" alt="Servicio 2" class="service-image">
+                    <div class="service-info">
+                        <h2 class="service-title">Análisis de Suelo</h2>
+                        <p class="service-description">Evaluamos la composición de tu suelo para recomendarte los nutrientes adecuados.</p>
+                        <a href="{{ url_for('contact') }}" class="btn-primary">Solicitar Análisis</a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <img src="{{ url_for('static', filename='img/1.jpeg') }}" alt="Servicio 3" class="service-image">
+                    <div class="service-info">
+                        <h2 class="service-title">Control de Plagas</h2>
+                        <p class="service-description">Soluciones profesionales para el manejo integrado de plagas que protegen tu inversión.</p>
+                        <a href="{{ url_for('contact') }}" class="btn-primary">Solicitar Servicio</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container footer-container">
+            <div class="footer-contact">
+                <h3 class="footer-title">Contáctanos</h3>
+                <p class="footer-text"><i class="fas fa-phone footer-icon"></i> +51 941 562 220</p>
+                <p class="footer-text"><i class="fas fa-map-marker-alt footer-icon"></i> jr. sucre 426 imperial, cañete, Perú</p>
+                <p class="footer-text"><i class="fas fa-envelope footer-icon"></i> agricolagreencrop23@gmail.com</p>
+            </div>
+            <div class="footer-social">
+                <h3 class="footer-title">Síguenos</h3>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/" target="_blank" class="social-link"><i class="fab fa-facebook-f icon-2x"></i></a>
+                    <a href="https://www.instagram.com/" target="_blank" class="social-link"><i class="fab fa-instagram icon-2x"></i></a>
+                    <a href="https://www.youtube.com/" target="_blank" class="social-link"><i class="fab fa-youtube icon-2x"></i></a>
+                    <a href="https://wa.me/51941562220" target="_blank" class="social-link"><i class="fab fa-whatsapp icon-2x"></i></a>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <p>© 2025 Agricola Green Crop S.A.C.</p>
+                <p>Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/web.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
